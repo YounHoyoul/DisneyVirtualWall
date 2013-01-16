@@ -24,6 +24,8 @@ import org.opencv.features2d.FeatureDetector;
 import org.opencv.features2d.Features2d;
 import org.opencv.imgproc.Imgproc;
 
+import com.tcs.disneyvirtualwall.youtube.PlayerViewDemoActivity;
+
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -52,7 +54,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	private static final String TAG = "CAMERA::Activity";
 	private static final boolean D = false;
 	private static final int BOUNDARY = 35;
-	private static final double THRESHOLD = 15.0;
+	private static final double THRESHOLD = 30.0;
 	private static final boolean CACHED = true;
 	
 	private static final int PICK_FROM_CAMERA = 0;
@@ -68,8 +70,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	private ImageView mPhotoImageView;
 	
 	private Button mBtnStart;
-	private Button mBtnTest;
-	private Button mBtnEach;
+	private Button mBtnYoutube;
 	
 	private Bitmap mImgFromCamera;
 	private ProgressBar mProgress;
@@ -89,7 +90,9 @@ public class MainActivity extends Activity implements OnClickListener {
 		R.drawable.disney_sample_1_portrait_50,
 		R.drawable.disney_sample_2_portrait_50,
 		R.drawable.disney_sample_3_portrait_50,
-		R.drawable.disney_sample_4_portrait_50
+		R.drawable.disney_sample_4_portrait_50,
+		
+		R.drawable.goto_movie
 	};
 	
 	private static int [] mResources2 = new int[]{
@@ -106,7 +109,9 @@ public class MainActivity extends Activity implements OnClickListener {
 		R.drawable.disney_sample_1_landscape_50,
 		R.drawable.disney_sample_2_landscape_50,
 		R.drawable.disney_sample_3_landscape_50,
-		R.drawable.disney_sample_4_landscape_50
+		R.drawable.disney_sample_4_landscape_50,
+		
+		R.drawable.goto_movie
 	};
 	
    	private int nMaxMatchNdx = 0;
@@ -139,12 +144,14 @@ public class MainActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.activity_main);
 		
 		mBtnStart = (Button)findViewById(R.id.start);
+		mBtnYoutube = (Button)findViewById(R.id.youtube);
 
         mSample = (ImageView)findViewById(R.id.sample);
 		mTarget = (ImageView)findViewById(R.id.crop);
 		mProgress = (ProgressBar)findViewById(R.id.progress);
 		
 		mBtnStart.setOnClickListener(this);
+		mBtnYoutube.setOnClickListener(this);
 
 		
 		if (!OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_2_4_3, this, mLoaderCallback))
@@ -152,6 +159,9 @@ public class MainActivity extends Activity implements OnClickListener {
 			Log.e(TAG, "Cannot connect to OpenCV Manager");
 	    }
 		
+		Intent intent = new Intent(MainActivity.this,PlayerViewDemoActivity.class);
+		intent.putExtra("video_uri", "3dnxG6fxXi8");
+    	startActivity(intent);
 	}
 
 	@Override
@@ -208,6 +218,9 @@ public class MainActivity extends Activity implements OnClickListener {
 		        // 이미지를 가져온 이후의 리사이즈할 이미지 크기를 결정합니다.
 		        // 이후에 이미지 크롭 어플리케이션을 호출하게 됩니다.
 	      		
+	      		mImgFromCamera = scaleAndTrun(MainActivity.this.grabImage(mode));
+  	    		mSample.setImageBitmap(mImgFromCamera);
+	      		
 	      		// AsyncTask는 재활용할 수 없습니다. 매번 새롭게 생성
 	      	    mTask = new AsyncTask<Void, Integer, Void>()
 	      	    {
@@ -227,7 +240,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	      	    	@Override
 	      	    	protected Void doInBackground(Void... params){
 	      	    		
-	      	    		mImgFromCamera = scaleAndTrun(MainActivity.this.grabImage(mode));
+	      	    		
 	      	     	    
 		      	  		boolean isPortrait = true;
 		      			int [] res = mResources;
@@ -292,13 +305,20 @@ public class MainActivity extends Activity implements OnClickListener {
 	      	    		
 	      	    		TextView tv = (TextView)findViewById(R.id.txt_desc);
 	      	    		tv.setText("Max Matching Rate : "+nMaxMatchRate+"%");
-	      	     		mSample.setImageBitmap(mImgFromCamera);
+	      	     		//mSample.setImageBitmap(mImgFromCamera);
 	      	     		
 	      	     		//mTarget.setImageResource(mResources[nMaxMatchNdx]);
 	      	     		Bitmap input2 = scaleAndTrun(BitmapFactory.decodeResource(getResources(), mResources[nMaxMatchNdx]));
 	      	     		mTarget.setImageBitmap(input2);
 	      	     		
 	      	     		mProgress.setVisibility(View.GONE);
+	      	     		
+	      	     		if(nMaxMatchNdx == 12){	
+	      	     			Intent intent = new Intent(MainActivity.this,PlayerViewDemoActivity.class);
+	      	     			intent.putExtra("video_uri", "ZRlCulV7r-I");
+	      	     	    	startActivity(intent);
+	      	     	    	
+	      	     		}
 	      	    	}
 	      	      
 	      	    	// 외부에서 강제로 취소할때 호출되는 메소드
@@ -568,6 +588,12 @@ public class MainActivity extends Activity implements OnClickListener {
 	        	.setNegativeButton("Cancel", cancelListener)
 	        	.show();
 	    	
-    	}
+    	}else if(v.getId() == R.id.youtube){
+        	
+        	Intent intent = new Intent(MainActivity.this,PlayerViewDemoActivity.class);
+        	intent.putExtra("video_uri", "3dnxG6fxXi8");
+        	startActivity(intent);
+    		
+        }
     }
 }

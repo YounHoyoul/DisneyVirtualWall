@@ -57,33 +57,52 @@ containing a value of this type.
         public static final int disney_sample_4_landscape_80=0x7f020011;
         public static final int disney_sample_4_portrait=0x7f020012;
         public static final int disney_sample_4_portrait_50=0x7f020013;
-        public static final int ic_launcher=0x7f020014;
+        public static final int goto_movie=0x7f020014;
+        public static final int ic_launcher=0x7f020015;
     }
     public static final class id {
         public static final int any=0x7f040000;
         public static final int back=0x7f040001;
-        public static final int crop=0x7f040007;
+        public static final int crop=0x7f04000b;
         public static final int front=0x7f040002;
-        public static final int match=0x7f040008;
-        public static final int menu_settings=0x7f040009;
-        public static final int progress=0x7f040004;
-        public static final int sample=0x7f040006;
-        public static final int start=0x7f040003;
-        public static final int txt_desc=0x7f040005;
+        public static final int layout=0x7f04000e;
+        public static final int match=0x7f04000c;
+        public static final int menu_settings=0x7f040011;
+        public static final int player=0x7f04000f;
+        public static final int player_fragment=0x7f040004;
+        public static final int progress=0x7f040008;
+        public static final int sample=0x7f040007;
+        public static final int start=0x7f040006;
+        public static final int tutorial_text=0x7f040005;
+        public static final int txt_desc=0x7f040009;
+        public static final int txt_result=0x7f04000a;
+        public static final int view_container=0x7f040003;
+        public static final int youtube=0x7f04000d;
+        public static final int youtube_view=0x7f040010;
     }
     public static final class layout {
-        public static final int activity_main=0x7f030000;
+        public static final int action_bar_demo=0x7f030000;
+        public static final int activity_main=0x7f030001;
+        public static final int fullscreen_demo=0x7f030002;
+        public static final int playerview_demo=0x7f030003;
     }
     public static final class menu {
         public static final int activity_main=0x7f070000;
     }
     public static final class string {
+        public static final int actionbar_tutorial=0x7f05000c;
         public static final int app_name=0x7f050000;
-        public static final int each=0x7f050005;
+        public static final int each=0x7f050006;
+        public static final int enter_fullscreen=0x7f05000a;
+        public static final int error_player=0x7f050008;
+        public static final int fullscreen_tutorial=0x7f050009;
         public static final int hello_world=0x7f050001;
+        public static final int landscape_fullscreen=0x7f05000b;
         public static final int menu_settings=0x7f050002;
-        public static final int start=0x7f050003;
-        public static final int test=0x7f050004;
+        public static final int result=0x7f050003;
+        public static final int start=0x7f050004;
+        public static final int test=0x7f050005;
+        public static final int youtube=0x7f050007;
     }
     public static final class style {
         /** 

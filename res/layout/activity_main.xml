@@ -12,13 +12,20 @@
         android:text="@string/start"/>
 
     
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/sample"
+        android:layout_below="@+id/start"
+        />
+    
     <ProgressBar 
         android:id="@+id/progress"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:max="100"
         style="@android:style/Widget.ProgressBar.Horizontal"
-        android:layout_below="@+id/start"
+        android:layout_below="@+id/sample"
         android:visibility="gone"
         />
     
@@ -26,22 +33,23 @@
         android:id="@+id/txt_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world"
+        android:text=""
         android:layout_below="@+id/progress"
+        />
+    
+    <TextView
+        android:id="@+id/txt_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/result"
+        android:layout_below="@+id/txt_desc"
         />
     
     <ImageView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/sample"
-        android:layout_below="@+id/txt_desc"
-        />
-
-    <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/crop"
-        android:layout_below="@+id/sample"
+        android:layout_below="@+id/txt_result"
         />
     
     <ImageView
@@ -50,4 +58,12 @@
         android:id="@+id/match"
         android:layout_below="@+id/crop"
         />
+    
+    <Button 
+        android:id="@+id/youtube"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/youtube"
+        android:layout_below="@+id/match"/>
+    
 </RelativeLayout>
